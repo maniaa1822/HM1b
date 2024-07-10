@@ -1,5 +1,5 @@
-from lstm_classification_model import LSTMClassifier, train_model,train_and_evaluate, evaluate_model
-from lstm_dataset_class import LSTMTextClassificationDataset
+from src.lstm_classification_model import LSTMClassifier, train_model,train_and_evaluate, evaluate_model
+from src.lstm_dataset_class import LSTMTextClassificationDataset
 
 import torch
 
@@ -24,7 +24,9 @@ train_and_evaluate(
     val_dataset, 
     {'test1': test_dataset1, 'test2': test_dataset2},
     batch_size=128, 
-    n_epochs=12, 
+    n_epochs=5, 
     lr=0.001, 
-    device='cuda' if torch.cuda.is_available() else 'cpu'
+    device='cuda' if torch.cuda.is_available() else 'cpu',
+    train_only=True,
+    eval_only=False
 )
