@@ -1,5 +1,5 @@
 #%%
-
+from lstm_dataset_class import LSTMTextClassificationDataset
 import random
 from torchtext.data.utils import get_tokenizer
 import matplotlib.pyplot as plt
@@ -54,5 +54,10 @@ def visualize_dataset(dataset, num_samples=10):
 
 # Usage:
 # visualize_dataset(your_dataset_instance)
+#split into two files for train and test
 
+# %%
+dataset = LSTMTextClassificationDataset('HASPEEDE-20240708T122905Z-001/HASPEEDE/train-taskA.jsonl', split='train', split_ratio=0.8)
+# %%
+visualize_dataset(dataset, num_samples=5)
 # %%
