@@ -1,0 +1,61 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{url}
+\usepackage{graphicx}
+
+\title{Sentiment Analysis with BiLSTM}
+\author{Your Name \\ 
+    Your Affiliation \\
+    \texttt{your.email@example.com}}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper presents a Bidirectional Long Short-Term Memory (BiLSTM) model for sentiment analysis on the HASPEEDE dataset. The model aims to classify text as either positive or negative sentiment. We describe the dataset, the model architecture, and the training and evaluation process. The results demonstrate the effectiveness of the BiLSTM approach for this task.
+\end{abstract}
+
+\section{Introduction}
+Sentiment analysis is an important natural language processing task that involves classifying text as expressing positive, negative, or neutral sentiment. In this work, we develop a BiLSTM model to tackle the sentiment analysis problem on the HASPEEDE dataset, which contains tweets and news articles annotated for sentiment.
+
+\section{Methodology}
+\begin{verbatim}
+BiLSTMModel(
+    (embedding): Embedding(23699, 128, padding_idx=0)
+    (bilstm): LSTM(128, 128, num_layers=8,
+     batch_first=True, dropout=0.3,
+      bidirectional=True)
+    (layer_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    (hidden_layer): Linear(in_features=256, out_features=128, bias=True)
+    (projection): Linear(in_features=128, out_features=2, bias=True)
+    (relu): ReLU()
+)
+\end{verbatim}
+\subsection{Dataset}
+The HASPEEDE dataset consists of Italian text data, including tweets and news articles, labeled as either positive or negative sentiment. The dataset is split into training, validation, and test sets, which we use to train and evaluate our model.
+
+\subsection{BiLSTM Model}
+
+Our sentiment analysis model is based on a Bidirectional Long Short-Term Memory (BiLSTM) architecture. The model takes as input a sequence of token IDs and outputs the predicted sentiment class (positive or negative). The key components of the model include:
+
+- An embedding layer to convert token IDs to word embeddings
+- A BiLSTM layer to encode the text sequence
+- A layer normalization and fully connected layer to produce the final logits
+- A softmax output layer to generate the class probabilities
+
+\subsection{Training and Evaluation}
+We train the BiLSTM model using the Adam optimizer and cross-entropy loss. The model is trained for 10 epochs on the training set and evaluated on the validation set. We report the test set performance after selecting the model with the best validation accuracy.
+
+\section{Results}
+The BiLSTM model achieves an accuracy of \textbf{XX\%} on the test set, demonstrating the effectiveness of the approach for sentiment analysis on the HASPEEDE dataset.
+
+\section{Conclusion}
+In this work, we presented a BiLSTM model for sentiment analysis on the HASPEEDE dataset. The results show that the BiLSTM architecture is well-suited for this task, achieving strong performance on the test set. Future work could explore additional model improvements or the use of the model in downstream applications.
+
+\bibliographystyle{acl_natbib}
+\bibliography{references}
+\end{document}

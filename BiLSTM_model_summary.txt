@@ -1,0 +1,9 @@
+BiLSTMModel(
+  (embedding): Embedding(23699, 128, padding_idx=0)
+  (bilstm): LSTM(128, 128, num_layers=8, batch_first=True, dropout=0.3, bidirectional=True)
+  (layer_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+  (hidden_layer): Linear(in_features=256, out_features=128, bias=True)
+  (projection): Linear(in_features=128, out_features=2, bias=True)
+  (relu): ReLU()
+)
+Test loss: 0.7261771142482758, Test accuracy: 0.5991131782531738

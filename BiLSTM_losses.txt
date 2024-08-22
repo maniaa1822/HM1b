@@ -1,0 +1,3 @@
+train_losses
+valid_losses
+valid_acc

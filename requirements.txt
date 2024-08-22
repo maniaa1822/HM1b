@@ -1,6 +1,0 @@
-torch
-torchdata
-torchtext
-scikit-learn
-seaborn
-
