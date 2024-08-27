@@ -15,8 +15,8 @@ if __name__ == "__main__":
     device = "cuda"
 
     train_dataset = HASPEEDE_Dataset("/home/matteo/AI and Robotics/NLP/HM1b/HASPEEDE-20240708T122905Z-001/HASPEEDE/train-taskA.jsonl", device=device)
-    validation_dataset = HASPEEDE_Dataset("/home/matteo/AI and Robotics/NLP/HM1b/HASPEEDE-20240708T122905Z-001/HASPEEDE/test-news-taskA.jsonl", device=device)
-    test_dataset = HASPEEDE_Dataset("/home/matteo/AI and Robotics/NLP/HM1b/HASPEEDE-20240708T122905Z-001/HASPEEDE/test-tweets-taskA.jsonl", device=device)
+    validation_dataset = HASPEEDE_Dataset("/home/matteo/AI and Robotics/NLP/HM1b/HASPEEDE-20240708T122905Z-001/HASPEEDE/test-tweets-taskA.jsonl", device=device)
+    test_dataset = HASPEEDE_Dataset("/home/matteo/AI and Robotics/NLP/HM1b/HASPEEDE-20240708T122905Z-001/HASPEEDE/test-news-taskA.jsonl", device=device)
 
     vocabulary = train_dataset.get_vocabulary(pad_token=pad_token, unk_token=unk_token)
     padding_id = vocabulary([pad_token])[0]
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     sentiment_classifier = BiLSTMModel(
         vocabulary_length=len(vocabulary),
         hidden_dim=128,
-        bilstm_layers=8,
+        bilstm_layers=4,
         bilstm_dropout=0.3,
         num_classes=2,
         padding_id=padding_id,
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     trainer = Trainer(
         model=sentiment_classifier,
-        optimizer=torch.optim.Adam(sentiment_classifier.parameters(), lr=0.0001),
+        optimizer=torch.optim.Adam(sentiment_classifier.parameters(), lr=0.001),
         log_steps=10
     )
 

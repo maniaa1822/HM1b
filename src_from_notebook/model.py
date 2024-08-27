@@ -1,7 +1,6 @@
 # This file contains the model definition for the BiLSTM model, the baseline models and the BOW baseline model
 import torch
 from torch import nn
-from torch.nn.utils.rnn import pad_sequence
 from torch.nn.utils.rnn import pack_padded_sequence, pad_sequence
 
 ### Imports ###

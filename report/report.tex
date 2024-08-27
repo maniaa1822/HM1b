@@ -4,11 +4,11 @@
 \usepackage{latexsym}
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage{adjustbox}
 
 \title{Sentiment Analysis with BiLSTM}
-\author{Your Name \\ 
-    Your Affiliation \\
-    \texttt{your.email@example.com}}
+\author{Matteo Manias \\ 
+    \texttt{manias.1822363@studenti.uniroma1.it}}
 
 \date{}
 
@@ -16,46 +16,100 @@
 \maketitle
 
 \begin{abstract}
-This paper presents a Bidirectional Long Short-Term Memory (BiLSTM) model for sentiment analysis on the HASPEEDE dataset. The model aims to classify text as either positive or negative sentiment. We describe the dataset, the model architecture, and the training and evaluation process. The results demonstrate the effectiveness of the BiLSTM approach for this task.
+Report for the HM1b assignment, create a sentiment analysis model using a BiLSTM architecture on the HASPEEDE dataset. The model achieves an accuracy of 70\% on the test set, demonstrating the effectiveness of the approach for sentiment analysis.
 \end{abstract}
 
 \section{Introduction}
-Sentiment analysis is an important natural language processing task that involves classifying text as expressing positive, negative, or neutral sentiment. In this work, we develop a BiLSTM model to tackle the sentiment analysis problem on the HASPEEDE dataset, which contains tweets and news articles annotated for sentiment.
+Sentiment analysis is an important natural language processing task that involves classifying text as expressing positive,
+negative, or neutral sentiment.
+\\ For this specific case i developed a BiLSTM model to predict the sentiment label of the HASPEEDE dataset, which consists of Italian text data labeled as positive or negative sentiment.
+\\ The main goal of this work is to demonstrate the superior performance of an RNN model over
+several baseline classification methods and a more advanced bag of words (BoW) model.
 
-\section{Methodology}
+
+
+\section{HASPEEDE Dataset}
+\begin{adjustbox}{width=0.5\columnwidth}
+\begin{minipage}{\linewidth}
 \begin{verbatim}
-BiLSTMModel(
-    (embedding): Embedding(23699, 128, padding_idx=0)
-    (bilstm): LSTM(128, 128, num_layers=8,
-     batch_first=True, dropout=0.3,
-      bidirectional=True)
-    (layer_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
-    (hidden_layer): Linear(in_features=256, out_features=128, bias=True)
-    (projection): Linear(in_features=128, out_features=2, bias=True)
-    (relu): ReLU()
-)
+{
+  "text": "È terrorismo anche questo, per mettere in uno 
+           stato di soggezione le persone e renderle 
+           innocue, mentre qualcuno... URL",
+  "choices": ["neutrale", "odio"],
+  "label": 0
+}
 \end{verbatim}
-\subsection{Dataset}
-The HASPEEDE dataset consists of Italian text data, including tweets and news articles, labeled as either positive or negative sentiment. The dataset is split into training, validation, and test sets, which we use to train and evaluate our model.
+\end{minipage}
+\end{adjustbox}
 
-\subsection{BiLSTM Model}
+The generic entry of the HASPEEDE dataset is shown above.
+\\The text field contains the sentence to be classified, the choices field contains the possible sentiment labels
+and the label field contains the index of the ground truth sentiment label.
+\\The dataset is expressed in the JSONL format, with each line representing a single data entry and is split into training, validation, and test sets.
 
-Our sentiment analysis model is based on a Bidirectional Long Short-Term Memory (BiLSTM) architecture. The model takes as input a sequence of token IDs and outputs the predicted sentiment class (positive or negative). The key components of the model include:
+\section{Model architecture}
+To capture the underlying sentiment of the text, i used an RNN model that can successfully capture the context of the text by leveraging the sequential nature
+of text data and the long-term dependencies between words, the contex of the text is preserved in the model by storing it in a memory cell.
+\\The specific RNN model used is the Bidirectional Long Short-Term Memory (BiLSTM) model, which processes the text sequence in both forward and backward directions.
+\\The BiLSTM model is initialized as follows:
 
-- An embedding layer to convert token IDs to word embeddings
-- A BiLSTM layer to encode the text sequence
-- A layer normalization and fully connected layer to produce the final logits
-- A softmax output layer to generate the class probabilities
 
-\subsection{Training and Evaluation}
-We train the BiLSTM model using the Adam optimizer and cross-entropy loss. The model is trained for 10 epochs on the training set and evaluated on the validation set. We report the test set performance after selecting the model with the best validation accuracy.
+\begin{adjustbox}{width=0.5\columnwidth}
+\begin{minipage}{\linewidth}
+\begin{verbatim}
+    BiLSTMModel(
+      (embedding): Embedding(23699, 128, padding_idx=0)
+      (bilstm): LSTM(128, 128, num_layers=4, batch_first=True, dropout=0.3,
+       bidirectional=True)
+      (layer_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+      (hidden_layer): Linear(in_features=256, out_features=128, bias=True)
+      (projection): Linear(in_features=128, out_features=2, bias=True)
+      (relu): ReLU()
+    )
+\end{verbatim}
+\end{minipage}
+\end{adjustbox}
 
+\subsection{BiLSTM Desing}
+The BiLSTM model consists of the following components:
+\begin{itemize}
+    \item An embedding layer that converts the input tokens into dense vectors, the embedding dimension is determined by the size of the vocabulary and the desired vector size.
+    \item A BiLSTM layer that processes the input sequence in both forward and backward directions, the LSTM layer has 128 hidden units and 4 layers.\\ More complex values migth lead to overfitting as the dataset is relatively small.
+    \item A layer normalization layer that normalizes the output of the BiLSTM layer. This helps stabilize the training process and improve the model's generalization.
+    \item A hidden layer that reduces the dimensionality of the output. This is the first layer in the final classification network.
+    \item A projection layer that maps the output to the number of sentiment classes, to make the final prediction, using multiple layers helps the model to learn more complex representations of the LSTM output.
+    \item A ReLU activation function that introduces non-linearity into the model.
+\end{itemize}
+
+\subsection{Baselines implemented}
+To gauge the performance of the BiLSTM model, i used the following baselines:
+\begin{itemize}
+    \item Majority class baseline: Predicts the majority class label for all instances.
+    \item Random baseline: Predicts a random label for each instance.
+    \item BoW baseline: Uses a bag of words model with a FNN final classifier.
+\end{itemize}
 \section{Results}
-The BiLSTM model achieves an accuracy of \textbf{XX\%} on the test set, demonstrating the effectiveness of the approach for sentiment analysis on the HASPEEDE dataset.
-
-\section{Conclusion}
-In this work, we presented a BiLSTM model for sentiment analysis on the HASPEEDE dataset. The results show that the BiLSTM architecture is well-suited for this task, achieving strong performance on the test set. Future work could explore additional model improvements or the use of the model in downstream applications.
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Model} & \textbf{Test Loss} & \textbf{Test Accuracy} \\
+\hline
+BoW Baseline & 0.6595 & 0.6502 \\
+\hline
+Majority Baseline & 0.6931 & 0.6465 \\
+\hline
+Random Baseline & 0.9093 & 0.4707 \\
+\hline
+BiLSTM & 0.6920 & 0.6938 \\
+\hline
+\end{tabular}
+\caption{Results of baselines classification techniques and the BiLSTM model on the HASPEEDE test dataset.\\the BiLSTM model outperforms all oother baselines}
+\label{tab:results}
+\end{table}
 
 \bibliographystyle{acl_natbib}
 \bibliography{references}
+code available at: \url{https://github.com/maniaa1822/HM1b}
 \end{document}

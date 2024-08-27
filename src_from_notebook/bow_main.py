@@ -30,20 +30,7 @@ training_dataloader = DataLoader(train_dataset, batch_size=128, shuffle=True, co
 validation_dataloader = DataLoader(validation_dataset, batch_size=128, shuffle=False, collate_fn=validation_dataset._collate_fn)
 test_dataloader = DataLoader(test_dataset, batch_size=128, shuffle=False, collate_fn=test_dataset._collate_fn)
 
-# Create instances of the baseline models
-majority_baseline = BaselineModels(
-    vocab_size=len(vocabulary),
-    num_classes=2,
-    baseline_type='majority',
-    device=device
-)
 
-random_baseline = BaselineModels(
-    vocab_size=len(vocabulary),
-    num_classes=2,
-    baseline_type='random',
-    device=device
-)
 bow_baseline = BOWBaseline(
     vocab_size=len(vocabulary),
     num_classes=2,
@@ -79,23 +66,15 @@ if __name__ == "__main__":
     #train and evaluate using the bow baseline
     bow_losses, bow_test_loss, bow_test_acc = train_and_test(bow_baseline, training_dataloader, validation_dataloader, test_dataloader)
     print(f"BoW Baseline - Test loss: {bow_test_loss}, Test accuracy: {bow_test_acc}")
-    # Evaluate majority and random baselines (no training required)
-    majority_test_loss, majority_test_acc = evaluate_model(majority_baseline, test_dataloader)
-    print(f"Majority Baseline - Test loss: {majority_test_loss}, Test accuracy: {majority_test_acc}")
 
-    random_test_loss, random_test_acc = evaluate_model(random_baseline, test_dataloader)
-    print(f"Random Baseline - Test loss: {random_test_loss}, Test accuracy: {random_test_acc}")
+
     
     #save the results
-    with open("baselines_results.txt", "w") as f:
+    with open("BoW_results.txt", "w") as f:
         f.write(f"BoW Baseline - Test loss: {bow_test_loss}, Test accuracy: {bow_test_acc}\n")
-        f.write(f"Majority Baseline - Test loss: {majority_test_loss}, Test accuracy: {majority_test_acc}\n")
-        f.write(f"Random Baseline - Test loss: {random_test_loss}, Test accuracy: {random_test_acc}\n")
-
+        f.write(f"BoW Baseline - Losses: {bow_losses}\n")
         #write models hyperparameters
         f.write(f"BoW Baseline - Hyperparameters: {bow_baseline}\n")
-        f.write(f"Majority Baseline - Hyperparameters: {majority_baseline}\n")
-        f.write(f"Random Baseline - Hyperparameters: {random_baseline}\n")
 
 
 
