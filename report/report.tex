@@ -22,11 +22,10 @@ Report for the HM1b assignment, create a sentiment analysis model using a BiLSTM
 \section{Introduction}
 Sentiment analysis is an important natural language processing task that involves classifying text as expressing positive,
 negative, or neutral sentiment.
-\\ For this specific case i developed a BiLSTM model to predict the sentiment label of the HASPEEDE dataset, which consists of Italian text data labeled as positive or negative sentiment.
+\\ For this specific case a BiLSTM model is implemented to predict the sentiment label of the HASPEEDE dataset,
+ which consists of Italian text data labeled as with positive or negative sentiment.
 \\ The main goal of this work is to demonstrate the superior performance of an RNN model over
 several baseline classification methods and a more advanced bag of words (BoW) model.
-
-
 
 \section{HASPEEDE Dataset}
 \begin{adjustbox}{width=0.5\columnwidth}
@@ -49,8 +48,9 @@ and the label field contains the index of the ground truth sentiment label.
 \\The dataset is expressed in the JSONL format, with each line representing a single data entry and is split into training, validation, and test sets.
 
 \section{Model architecture}
-To capture the underlying sentiment of the text, i used an RNN model that can successfully capture the context of the text by leveraging the sequential nature
-of text data and the long-term dependencies between words, the contex of the text is preserved in the model by storing it in a memory cell.
+To capture the underlying sentiment of the text,an RNN model is used that can successfully capture the context of the text by leveraging the sequential nature
+of text data and the long-term dependencies between words,
+ the contex of the text is preserved in the model by storing it in a memory cell,a particular LSTM architectural feature.
 \\The specific RNN model used is the Bidirectional Long Short-Term Memory (BiLSTM) model, which processes the text sequence in both forward and backward directions.
 \\The BiLSTM model is initialized as follows:
 
@@ -75,7 +75,7 @@ of text data and the long-term dependencies between words, the contex of the tex
 The BiLSTM model consists of the following components:
 \begin{itemize}
     \item An embedding layer that converts the input tokens into dense vectors, the embedding dimension is determined by the size of the vocabulary and the desired vector size.
-    \item A BiLSTM layer that processes the input sequence in both forward and backward directions, the LSTM layer has 128 hidden units and 4 layers.\\ More complex values migth lead to overfitting as the dataset is relatively small.
+    \item A BiLSTM layer that processes the input sequence in both forward and backward directions, the LSTM layer has 128 hidden units and 4 layers.\\ More complex values might lead to overfitting as the dataset is relatively small.
     \item A layer normalization layer that normalizes the output of the BiLSTM layer. This helps stabilize the training process and improve the model's generalization.
     \item A hidden layer that reduces the dimensionality of the output. This is the first layer in the final classification network.
     \item A projection layer that maps the output to the number of sentiment classes, to make the final prediction, using multiple layers helps the model to learn more complex representations of the LSTM output.
@@ -83,7 +83,7 @@ The BiLSTM model consists of the following components:
 \end{itemize}
 
 \subsection{Baselines implemented}
-To gauge the performance of the BiLSTM model, i used the following baselines:
+To gauge the performance of the BiLSTM model,the following baselines are implemented:
 \begin{itemize}
     \item Majority class baseline: Predicts the majority class label for all instances.
     \item Random baseline: Predicts a random label for each instance.
@@ -105,7 +105,7 @@ Random Baseline & 0.9093 & 0.4707 \\
 BiLSTM & 0.6920 & 0.6938 \\
 \hline
 \end{tabular}
-\caption{Results of baselines classification techniques and the BiLSTM model on the HASPEEDE test dataset.\\the BiLSTM model outperforms all oother baselines}
+\caption{Results of baselines classification techniques and the BiLSTM model on the HASPEEDE test dataset.\\the BiLSTM model outperforms all other baselines}
 \label{tab:results}
 \end{table}
 

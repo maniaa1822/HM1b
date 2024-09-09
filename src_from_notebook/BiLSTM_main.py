@@ -64,7 +64,7 @@ if __name__ == "__main__":
     with open("BiLSTM_losses.txt", "w") as f:
         f.write("\n".join(map(str, losses)))
     print("Model saved")
-    print("Training and evaluation completed    ")
+    print("Training and evaluation completed")
     
     
     

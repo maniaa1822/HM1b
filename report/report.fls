@@ -1,9 +1,9 @@
-PWD /home/matteo/AI and Robotics/NLP/HM1b/report
+PWD /home/matteo/AI_and_Robotics/NLP/HM1b/report
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/matteo/AI and Robotics/NLP/HM1b/report/report.tex
+INPUT /home/matteo/AI_and_Robotics/NLP/HM1b/report/report.tex
 OUTPUT report.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls

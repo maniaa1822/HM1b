@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.27)  27 AUG 2024 15:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.27)  9 SEP 2024 16:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/matteo/AI and Robotics/NLP/HM1b/report/report.tex"
-(/home/matteo/AI and Robotics/NLP/HM1b/report/report.tex
+**/home/matteo/AI_and_Robotics/NLP/HM1b/report/report.tex
+(/home/matteo/AI_and_Robotics/NLP/HM1b/report/report.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -365,34 +365,29 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 16
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 2547) in paragraph at lines 23--28
-\OT1/ptm/m/n/10.95 model to pre-dict the sen-ti-ment la-bel of the
- []
-
-
-Overfull \hbox (148.83342pt too wide) in paragraph at lines 42--42
+Overfull \hbox (148.83342pt too wide) in paragraph at lines 41--41
 []  \OT1/pcr/m/n/10.95 "text": "[]E terrorismo anche questo, per mettere in uno[] 
  []
 
 
-Overfull \hbox (122.55345pt too wide) in paragraph at lines 42--42
+Overfull \hbox (122.55345pt too wide) in paragraph at lines 41--41
 []           \OT1/pcr/m/n/10.95 stato di soggezione le persone e renderle[] 
  []
 
 
-Overfull \hbox (69.99352pt too wide) in paragraph at lines 42--42
+Overfull \hbox (69.99352pt too wide) in paragraph at lines 41--41
 []           \OT1/pcr/m/n/10.95 innocue, mentre qualcuno... URL",[] 
  []
 
 
-Overfull \hbox (4.2936pt too wide) in paragraph at lines 42--42
+Overfull \hbox (4.2936pt too wide) in paragraph at lines 41--41
 []  \OT1/pcr/m/n/10.95 "choices": ["neutrale", "odio"],[] 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 43.
+(Font)              <10.95> on input line 42.
 
-Underfull \hbox (badness 2828) in paragraph at lines 52--56
+Underfull \hbox (badness 2828) in paragraph at lines 51--56
 \OT1/ptm/m/n/10.95 Long Short-Term Mem-ory (BiL-STM) model,
  []
 
@@ -429,6 +424,11 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 
 ]
+Underfull \hbox (badness 4291) in paragraph at lines 86--87
+\OT1/ptm/m/n/10.95 To gauge the per-for-mance of the BiL-STM
+ []
+
+
 Overfull \hbox (4.97757pt too wide) in paragraph at lines 95--108
  [][] 
  []
@@ -451,14 +451,14 @@ Package rerunfilecheck Info: File `report.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  12276 strings out of 476182
- 196586 string characters out of 5795595
+ 196584 string characters out of 5795595
  1946975 words of memory out of 5000000
  34106 multiletter control sequences out of 15000+600000
  572551 words of font info for 69 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,10n,93p,345b,510s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,93p,343b,510s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (2 pages, 54305 bytes).
+Output written on report.pdf (2 pages, 54354 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
